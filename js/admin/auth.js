@@ -7,8 +7,14 @@ const FAWNIA_ADMIN_DEMO = {
   email: "admin@fawnia.com",
   password: "Fawnia123!",
 };
+const FAWNIA_ADMIN_LOGIN_URL = "/pages/admin/login.html";
+const FAWNIA_ADMIN_DASHBOARD_URL = "/pages/admin/dashboard.html";
 
 const FawniaAuth = {
+  isLoginPage() {
+    const path = location.pathname.replace(/\/+$/, "");
+    return /(?:^|\/)login(?:\.html)?$/i.test(path);
+  },
   isLoggedIn() {
     return localStorage.getItem(FAWNIA_KEYS.admin) === "true";
   },
@@ -24,15 +30,15 @@ const FawniaAuth = {
   },
   logout() {
     localStorage.removeItem(FAWNIA_KEYS.admin);
-    location.href = "login.html";
+    location.href = FAWNIA_ADMIN_LOGIN_URL;
   },
   requireLogin() {
-    if (!this.isLoggedIn()) location.replace("login.html");
+    if (!this.isLoggedIn()) location.replace(FAWNIA_ADMIN_LOGIN_URL);
   },
 };
 
 /* Guard: semua halaman admin selain login wajib masuk dulu */
-if (!location.pathname.endsWith("login.html")) {
+if (!FawniaAuth.isLoginPage()) {
   FawniaAuth.requireLogin();
 }
 
@@ -61,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const email = document.querySelector("#email").value;
     const pass = passInput.value;
-    if (FawniaAuth.login(email, pass)) location.href = "dashboard.html";
+    if (FawniaAuth.login(email, pass)) location.href = FAWNIA_ADMIN_DASHBOARD_URL;
     else error.textContent = "Email atau password salah.";
   });
 });

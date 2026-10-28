@@ -22,7 +22,8 @@ const FawniaAdminLayout = {
       header.dataset.built = "true";
       header.innerHTML = `
         <a class="admin-brand brand" href="../../index.html">
-          <span class="brand-mark">F</span> Fawnia <small>ADMIN</small>
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span class="admin-brand-name">Fawnia<small>ADMIN</small></span>
         </a>
         <div class="admin-top-actions">
           <a class="top-link" href="../../index.html" target="_blank" rel="noopener">Lihat Website</a>

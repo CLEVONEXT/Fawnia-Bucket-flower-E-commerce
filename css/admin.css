@@ -21,6 +21,44 @@ select,
 textarea {
   font: inherit;
 }
+.admin-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+}
+.admin-brand .brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+}
+.admin-brand .brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.admin-brand-name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.admin-brand small {
+  margin: 0;
+  color: var(--accent);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
 .login-page {
   min-height: 100vh;
   background: #f7f1eb;
@@ -74,9 +112,7 @@ textarea {
 }
 .login-showcase .admin-brand small {
   display: block;
-  font-size: 9px;
   color: #f0d7c5;
-  letter-spacing: 0.12em;
 }
 .login-showcase .eyebrow {
   color: #f0d7c5;

@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- Base path (data-base) dipakai js/ui.js untuk memuat logo di halaman admin -->
+<html lang="id" data-base="../../">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Dashboard — Fawnia Admin</title>
+    <link rel="icon" href="../../assets/img/fawnia-logo.png" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
+  <body class="admin-page">
+    <header class="admin-top"></header>
+    <aside class="admin-sidebar"></aside>
+
+    <main class="admin-content">
+      <p class="eyebrow">OVERVIEW</p>
+      <h1>Dashboard</h1>
+      <div id="dashboard-stats" class="admin-stats"></div>
+
+      <section class="admin-panel">
+        <h2>Pesanan terbaru</h2>
+        <div id="latest-orders" class="mini-list"></div>
+      </section>
+
+      <section class="admin-panel">
+        <h2>Pintasan</h2>
+        <div class="quick-links">
+          <a href="products.html">Tambah / edit produk</a>
+          <a href="gallery.html">Upload foto galeri</a>
+          <a href="orders.html">Kelola pesanan</a>
+          <a href="settings.html">Ubah nomor WhatsApp</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/store.js"></script>
+    <script src="../../js/ui.js"></script>
+    <script src="../../js/admin/auth.js"></script>
+    <script src="../../js/admin/common.js"></script>
+    <script src="../../js/admin/sidebar.js"></script>
+    <script src="../../js/admin/dashboard.js"></script>
+  </body>
+</html>

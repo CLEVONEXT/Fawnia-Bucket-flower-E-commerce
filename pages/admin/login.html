@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- Base path (data-base) dipakai js/ui.js untuk memuat logo di halaman admin -->
+<html lang="id" data-base="../../">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Admin Login — Fawnia</title>
+    <link rel="icon" href="../../assets/img/fawnia-logo.png" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-card">
+      <a class="admin-brand brand" href="../../index.html"
+        ><span class="brand-mark">F</span> Fawnia</a
+      >
+      <p class="eyebrow">ADMIN PANEL</p>
+      <h1>Selamat datang kembali.</h1>
+      <p class="muted">Masuk untuk mengelola website Fawnia.</p>
+
+      <form id="login-form">
+        <label
+          >Email<input
+            id="email"
+            type="email"
+            autocomplete="username"
+            required
+            placeholder="admin@fawnia.com"
+        /></label>
+        <label
+          >Password
+          <div class="password-wrap">
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              placeholder="Password"
+            />
+            <button type="button" id="toggle">Tampilkan</button>
+          </div>
+        </label>
+        <p id="error" class="error"></p>
+        <button class="admin-btn" type="submit">Login</button>
+      </form>
+
+      <p class="demo-note">
+        Demo lokal: <b>admin@fawnia.com</b> / <b>Fawnia123!</b>
+      </p>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/store.js"></script>
+    <script src="../../js/ui.js"></script>
+    <script src="../../js/admin/auth.js"></script>
+  </body>
+</html>

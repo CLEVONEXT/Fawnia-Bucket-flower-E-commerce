@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Base path (data-base) dipakai js/ui.js untuk memuat logo di halaman admin -->
+<html lang="id" data-base="../../">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Pengaturan — Fawnia Admin</title>
+    <link rel="icon" href="../../assets/img/fawnia-logo.png" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
+  <body class="admin-page">
+    <header class="admin-top"></header>
+    <aside class="admin-sidebar"></aside>
+
+    <main class="admin-content">
+      <p class="eyebrow">SETTINGS</p>
+      <h1>Pengaturan</h1>
+
+      <form id="settings-form">
+        <section class="admin-panel">
+          <h2>Profil toko</h2>
+          <div class="admin-form-grid">
+            <label>Nama UMKM<input name="businessName" type="text" /></label>
+            <label>Tagline<input name="tagline" type="text" /></label>
+            <label
+              >Nomor WhatsApp<input
+                name="whatsapp"
+                type="text"
+                placeholder="6281234567890"
+            /></label>
+            <label>Instagram<input name="instagram" type="text" /></label>
+            <label>Email<input name="email" type="email" /></label>
+            <label>Alamat toko<input name="address" type="text" /></label>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <h2>Pengiriman & pembayaran</h2>
+          <div class="admin-form-grid">
+            <label
+              >Catatan pengiriman<input name="shippingNote" type="text"
+            /></label>
+            <label
+              >Rekening transfer<input name="bankAccount" type="text"
+            /></label>
+            <label>Catatan QRIS<input name="qrisNote" type="text" /></label>
+          </div>
+          <div class="settings-columns">
+            <div>
+              <h3>Metode pengiriman</h3>
+              <div id="settings-shipping" class="mini-list"></div>
+            </div>
+            <div>
+              <h3>Metode pembayaran</h3>
+              <div id="settings-payment" class="mini-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="admin-actions">
+          <button class="admin-btn" type="submit">Simpan Perubahan</button>
+          <button class="btn-secondary danger" type="button" id="reset-data">
+            Reset data demo
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/store.js"></script>
+    <script src="../../js/ui.js"></script>
+    <script src="../../js/admin/auth.js"></script>
+    <script src="../../js/admin/common.js"></script>
+    <script src="../../js/admin/sidebar.js"></script>
+    <script src="../../js/admin/settings.js"></script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fawnia — bucket dan gift untuk momen spesial. Belanja mudah, bisa keranjang, checkout dari website atau WhatsApp.">
+  <meta name="theme-color" content="#f7efe8">
+  <title>Fawnia — Bucket & Gift Shop</title>
+  <link rel="icon" href="assets/img/fawnia-logo.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <!-- ================= TOP BAR e-commerce ================= -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span><i data-lucide="truck"></i> Gratis ongkir min. Rp 250.000 (area Bandung)</span>
+      <span><i data-lucide="shield-check"></i> 100% handmade & amanah</span>
+    </div>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="Fawnia Home">
+        <span class="brand-mark">F</span><span class="brand-name">fawnia</span>
+      </a>
+
+      <form id="search-form" class="search-bar" role="search">
+        <input id="search-input" type="search" placeholder="Cari bucket, gift, hamper..." autocomplete="off">
+        <button type="submit" aria-label="Cari"><i data-lucide="search"></i></button>
+      </form>
+
+      <div class="header-actions">
+        <a class="header-cta" href="pages/checkout.html" id="header-checkout">Checkout</a>
+      </div>
+    </div>
+
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#products">Produk</a>
+      <a class="nav-link" href="#gallery">Galeri</a>
+      <a class="nav-link" href="#shipping">Pengiriman</a>
+      <a class="nav-link" href="#payment">Pembayaran</a>
+      <a class="nav-link" href="pages/checkout.html">Checkout</a>
+      <a class="nav-link" href="pages/account.html">Akun</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= HERO / PROMO ================= -->
+    <section id="home" class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">BUCKET & GIFT UMKM</p>
+          <h1>Hadiah kecil,<br><em>momen besar.</em></h1>
+          <p class="hero-text">Belanja bucket cantik & gift pilihan Fawnia. Masukkan ke keranjang, pilih pengiriman & pembayaran, lalu checkout — dari website atau WhatsApp.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">Belanja Sekarang <i data-lucide="arrow-right"></i></a>
+            <a class="btn btn-ghost" data-wa-link href="#" target="_blank" rel="noopener"><i data-lucide="message-circle"></i> Chat WhatsApp</a>
+          </div>
+          <div class="hero-note"><i data-lucide="heart"></i> Dibuat dengan perhatian untuk orang tersayang.</div>
+        </div>
+        <div class="hero-visual">
+          <div class="blob"></div>
+          <div class="hero-card">
+            <img id="hero-image" src="assets/img/bucket-3.png" alt="Bucket Fawnia" class="hero-img">
+            <span>Bucket spesial untukmu</span>
+          </div>
+          <div class="floating-tag"><i data-lucide="sparkles"></i> Handmade</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KEUNGGULAN (strip) ================= -->
+    <section class="perks">
+      <div class="container perks-grid">
+        <div><i data-lucide="package"></i><b>Packing aman</b><span>Dus tebal + bubble wrap</span></div>
+        <div><i data-lucide="truck"></i><b>Kirim cepat</b><span>Instant / kurir / ekspedisi</span></div>
+        <div><i data-lucide="credit-card"></i><b>Bayar fleksibel</b><span>Transfer, QRIS, e-wallet, COD</span></div>
+        <div><i data-lucide="message-circle"></i><b>Fast respon</b><span>Admin balas via WhatsApp</span></div>
+      </div>
+    </section>
+
+    <!-- ================= PRODUK ================= -->
+    <section id="products" class="section products">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">KATALOG</p><h2>Bucket favorit Fawnia</h2></div>
+          <p id="product-result" class="muted-note"></p>
+        </div>
+        <div id="product-grid" class="product-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= GALERI ================= -->
+    <section id="gallery" class="section gallery-section">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">GALERI</p><h2>Inspirasi hadiahmu</h2></div>
+        </div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= PENGIRIMAN ================= -->
+    <section id="shipping" class="section shipping">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">METODE PENGIRIMAN</p><h2>Dikirim dengan aman</h2></div></div>
+        <div id="shipping-grid" class="info-grid"></div>
+        <p id="shipping-note" class="info-note"></p>
+      </div>
+    </section>
+
+    <!-- ================= PEMBAYARAN ================= -->
+    <section id="payment" class="section payment">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">METODE PEMBAYARAN</p><h2>Bayar dengan cara favoritmu</h2></div></div>
+        <div id="payment-grid" class="info-grid"></div>
+        <p class="info-note">Semua pembayaran dikonfirmasi manual oleh admin Fawnia via WhatsApp.</p>
+      </div>
+    </section>
+
+    <!-- ================= CHECKOUT (halaman terpisah) ================= -->
+    <section id="checkout" class="section checkout-cta">
+      <div class="container contact-card">
+        <div>
+          <p class="eyebrow">CHECKOUT</p>
+          <h2>Selesaikan pesananmu di halaman checkout.</h2>
+        </div>
+        <a class="btn btn-light" href="pages/checkout.html">Buka Checkout <i data-lucide="arrow-up-right"></i></a>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONI ================= -->
+    <section id="testimonials" class="section testimonials">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">KATA MEREKA</p><h2>Pesan yang membuat kami senang</h2></div></div>
+        <div id="testimonial-grid" class="testimonial-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= KONTAK ================= -->
+    <section id="contact" class="section contact">
+      <div class="container contact-card">
+        <div>
+          <p class="eyebrow">SIAP MEMBERI KEJUTAN?</p>
+          <h2>Yuk, buat momen spesialmu bersama Fawnia.</h2>
+        </div>
+        <a class="btn btn-light" data-wa-link href="#" target="_blank" rel="noopener">Pesan via WhatsApp <i data-lucide="arrow-up-right"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><a class="brand" href="#home"><span class="brand-mark">F</span><span class="brand-name">fawnia</span></a><p>Bucket & gift untuk momen spesial.</p></div>
+      <div><strong>Belanja</strong><a href="#products">Produk</a><a href="#checkout">Checkout</a><a href="#shipping">Pengiriman</a></div>
+      <div><strong>Hubungi</strong><a data-wa-link href="#" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a><a href="pages/admin/login.html" data-admin-trigger title="Klik 3 kali untuk masuk admin">Admin</a></div>
+    </div>
+    <div class="container copyright">© 2026 Fawnia. All rights reserved.</div>
+  </footer>
+
+  <!-- ================= BOTTOM NAV (mobile) ================= -->
+  <nav class="bottom-nav" aria-label="Navigasi mobile">
+    <a class="bottom-link active" href="#home"><i data-lucide="house"></i><span>Home</span></a>
+    <a class="bottom-link" href="#products"><i data-lucide="shopping-bag"></i><span>Produk</span></a>
+    <button type="button" class="bottom-link" data-cart-open aria-label="Keranjang">
+      <span class="bottom-cart"><i data-lucide="shopping-cart"></i><span class="cart-badge" data-cart-count style="display:none">0</span></span>
+      <span>Keranjang</span>
+    </button>
+    <a class="bottom-link" href="pages/checkout.html"><i data-lucide="credit-card"></i><span>Checkout</span></a>
+    <a class="bottom-link" href="pages/account.html"><i data-lucide="user"></i><span>Akun</span></a>
+  </nav>
+
+  <!-- ================= CART DRAWER ================= -->
+  <div id="cart-drawer" class="cart-drawer-root" aria-hidden="true"></div>
+
+  <!-- ================= LIGHTBOX ================= -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="close-lightbox" aria-label="Tutup"><i data-lucide="x"></i></button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/sections/products.js"></script>
+  <script src="js/sections/gallery.js"></script>
+  <script src="js/sections/testimonials.js"></script>
+  <script src="js/sections/shipping-payment.js"></script>
+  <script src="js/sections/checkout.js"></script>
+  <script src="js/qr.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

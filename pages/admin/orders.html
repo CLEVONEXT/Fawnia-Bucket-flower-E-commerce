@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Base path (data-base) dipakai js/ui.js untuk memuat logo di halaman admin -->
+<html lang="id" data-base="../../">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Pesanan — Fawnia Admin</title>
+    <link rel="icon" href="../../assets/img/fawnia-logo.png" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+  </head>
+  <body class="admin-page">
+    <header class="admin-top"></header>
+    <aside class="admin-sidebar"></aside>
+
+    <main class="admin-content">
+      <p class="eyebrow">ORDER</p>
+      <h1>Pesanan</h1>
+      <div id="order-stats" class="admin-stats"></div>
+
+      <div class="admin-toolbar">
+        <input
+          id="order-search"
+          type="search"
+          placeholder="Cari ID, nama, nomor WA..."
+        />
+        <select id="order-filter"></select>
+      </div>
+
+      <div id="order-list" class="order-list"></div>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/store.js"></script>
+    <script src="../../js/ui.js"></script>
+    <script src="../../js/admin/auth.js"></script>
+    <script src="../../js/admin/common.js"></script>
+    <script src="../../js/admin/sidebar.js"></script>
+    <script src="../../js/admin/orders.js"></script>
+  </body>
+</html>

@@ -21,67 +21,135 @@ select,
 textarea {
   font: inherit;
 }
-
-/* ---------- Login ---------- */
 .login-page {
   min-height: 100vh;
+  background: #f7f1eb;
+}
+.login-layout {
+  min-height: 100vh;
   display: grid;
-  place-items: center;
-  padding: 20px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);
 }
-.login-card {
-  width: min(440px, 100%);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(50, 35, 25, 0.08);
-}
-.admin-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-weight: 900;
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-.admin-brand .brand-mark {
-  width: 35px;
-  height: 35px;
-  background: var(--ink);
-  color: #fff;
+.login-showcase {
+  min-height: 100vh;
+  position: relative;
   overflow: hidden;
+  background: #40382f;
+  color: #fff;
 }
-.admin-brand .brand-mark img {
+.login-photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
-.admin-brand small {
+.login-showcase::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(28, 29, 24, 0.4), rgba(28, 29, 24, 0.12) 38%, rgba(28, 29, 24, 0.72));
+}
+.login-showcase-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(32px, 5vw, 72px);
+}
+.login-showcase .admin-brand {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+.login-showcase .admin-brand .brand-mark {
+  width: 44px;
+  height: 44px;
+  background: #fff;
+}
+.login-showcase .admin-brand .brand-mark img {
+  display: block;
+}
+.login-showcase .admin-brand small {
+  display: block;
   font-size: 9px;
-  color: var(--accent);
+  color: #f0d7c5;
   letter-spacing: 0.12em;
-  margin-left: 4px;
 }
-.login-card h1 {
-  font-size: 34px;
-  line-height: 1.05;
-  margin-bottom: 8px;
-  letter-spacing: -0.04em;
+.login-showcase .eyebrow {
+  color: #f0d7c5;
+}
+.login-showcase h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5.2vw, 72px);
+  font-weight: 400;
+  line-height: 1.04;
+}
+.login-showcase h1 em {
+  color: #f0d7c5;
+}
+.login-tagline {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 15px;
+}
+.login-photo-caption {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.82);
+}
+.login-panel {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px;
+  background: #fcfaf7;
+}
+.login-card {
+  width: min(420px, 100%);
+  padding: 0;
+  background: transparent;
+}
+.login-card > .eyebrow {
+  margin-bottom: 14px;
+}
+.login-card h2 {
+  margin-bottom: 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 .login-card form {
-  margin-top: 28px;
+  margin-top: 34px;
 }
-.login-card label,
-.admin-panel label,
-.field {
+.login-card form > label {
   display: block;
+  margin: 20px 0 8px;
   font-size: 12px;
   font-weight: 800;
-  margin: 16px 0;
+  color: var(--ink);
 }
-.login-card input,
+.login-card input {
+  width: 100%;
+  margin-top: 7px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 15px;
+  outline: none;
+  font-size: 14px;
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.login-card input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(156, 107, 79, 0.12);
+}
 .admin-panel input,
 .admin-panel select,
 .admin-panel textarea,
@@ -97,9 +165,7 @@ textarea {
   outline: none;
   font-size: 14px;
   color: var(--ink);
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .login-card input:focus,
 .admin-panel input:focus,
@@ -115,16 +181,18 @@ textarea {
   position: relative;
 }
 .password-wrap input {
-  padding-right: 92px;
+  padding-right: 100px;
 }
 .password-wrap button {
   position: absolute;
-  right: 8px;
-  top: 8px;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   border: 0;
   background: transparent;
   color: var(--accent);
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 700;
   cursor: pointer;
 }
 .admin-btn {
@@ -143,12 +211,19 @@ textarea {
 }
 .login-card .admin-btn {
   width: 100%;
-  margin-top: 8px;
+  min-height: 48px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
-.demo-note {
-  font-size: 10px;
-  color: #948a82;
+.login-home-link {
+  display: inline-block;
   margin-top: 22px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.login-home-link:hover {
+  color: var(--accent-dark);
 }
 
 /* ---------- Layout ---------- */
@@ -765,6 +840,27 @@ textarea {
   body {
     padding-bottom: 82px;
   }
+  .login-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .login-showcase,
+  .login-showcase-content {
+    height: 360px;
+    min-height: 360px;
+  }
+  .login-showcase-content {
+    padding: 24px;
+  }
+  .login-showcase h1 {
+    font-size: 42px;
+  }
+  .login-panel {
+    min-height: auto;
+    padding: 40px 22px 48px;
+  }
+  .login-panel .login-card {
+    padding: 0;
+  }
   .admin-top {
     height: 62px;
     padding: 0 14px;
@@ -842,9 +938,6 @@ textarea {
   }
   .row-actions {
     justify-content: flex-start;
-  }
-  .login-card {
-    padding: 28px;
   }
   .order-card {
     padding: 16px;

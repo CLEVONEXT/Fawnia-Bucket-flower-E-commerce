@@ -10,43 +10,43 @@
     <link rel="stylesheet" href="../../css/admin.css" />
   </head>
   <body class="login-page">
-    <main class="login-card">
-      <a class="admin-brand brand" href="../../index.html"
-        ><span class="brand-mark">F</span> Fawnia</a
-      >
-      <p class="eyebrow">ADMIN PANEL</p>
-      <h1>Selamat datang kembali.</h1>
-      <p class="muted">Masuk untuk mengelola website Fawnia.</p>
-
-      <form id="login-form">
-        <label
-          >Email<input
-            id="email"
-            type="email"
-            autocomplete="username"
-            required
-            placeholder="admin@fawnia.com"
-        /></label>
-        <label
-          >Password
-          <div class="password-wrap">
-            <input
-              id="password"
-              type="password"
-              autocomplete="current-password"
-              required
-              placeholder="Password"
-            />
-            <button type="button" id="toggle">Tampilkan</button>
+    <main class="login-layout">
+      <section class="login-showcase" aria-label="Fawnia Bucket and Gift">
+        <img class="login-photo" src="../../assets/img/bucket-3.png" alt="Bucket bunga buatan Fawnia">
+        <div class="login-showcase-content">
+          <a class="admin-brand brand" href="../../index.html">
+            <span class="brand-mark"><img src="../../assets/img/fawnia-logo.png" alt=""></span>
+            <span>fawnia <small>ADMIN</small></span>
+          </a>
+          <div>
+            <p class="eyebrow">RUANG KERJA FAWNIA</p>
+            <h1>Hadiah kecil,<br><em>momen besar.</em></h1>
+            <p class="login-tagline">Bucket &amp; gift handmade untuk momen istimewa.</p>
           </div>
-        </label>
-        <p id="error" class="error"></p>
-        <button class="admin-btn" type="submit">Login</button>
-      </form>
+          <span class="login-photo-caption">BUCKET CUSTOM · FAWNIA</span>
+        </div>
+      </section>
 
-      <p class="demo-note">
-        Demo lokal: <b>admin@fawnia.com</b> / <b>Fawnia123!</b>
-      </p>
+      <section class="login-panel">
+        <div class="login-card">
+          <p class="eyebrow">ADMIN PANEL</p>
+          <h2>Selamat datang kembali.</h2>
+          <p class="muted">Masuk ke akun admin untuk melanjutkan.</p>
+
+          <form id="login-form">
+            <label for="email">Email</label>
+            <input id="email" type="email" autocomplete="username" required placeholder="admin@fawnia.com">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input id="password" type="password" autocomplete="current-password" required placeholder="Masukkan password">
+              <button type="button" id="toggle">Tampilkan</button>
+            </div>
+            <p id="error" class="error" role="alert"></p>
+            <button class="admin-btn" type="submit">Masuk ke Admin</button>
+          </form>
+          <a class="login-home-link" href="../../index.html">Kembali ke toko</a>
+        </div>
+      </section>
     </main>
 
     <script src="https://unpkg.com/lucide@latest"></script>

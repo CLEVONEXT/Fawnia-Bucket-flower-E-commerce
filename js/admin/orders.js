@@ -1,5 +1,5 @@
 /* ============================================================
-   js/admin/orders.js — Kelola pesanan dari form website & WA
+   js/admin/orders.js — Mengelola pesanan dari form website & WhatsApp
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {

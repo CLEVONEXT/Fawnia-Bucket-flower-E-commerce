@@ -1,5 +1,5 @@
 /* ============================================================
-   js/admin/gallery.js — CRUD galeri foto
+   js/admin/gallery.js — CRUD foto galeri
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       body: `
         ${FawniaAdmin.field({ label: "Judul foto", name: "title", value: item?.title, required: true })}
         ${FawniaAdmin.field({ label: "Path gambar", name: "imagePath", value: item && !String(item.image).startsWith("data:") ? item.image : "", hint: "Contoh: assets/img/galeri-1.png" })}
-        <label class="field">Upload foto (maks 2 MB)<input type="file" name="imageFile" accept="image/*"></label>
+        <label class="field">Unggah foto (maks 2 MB)<input type="file" name="imageFile" accept="image/*"></label>
         <div class="preview-box">${item?.image ? FawniaUI.img(item.image, item.title) : "<span>Belum ada gambar</span>"}</div>`,
       onSubmit: async (modal) => {
         const f = modal.querySelector("#admin-modal-form");

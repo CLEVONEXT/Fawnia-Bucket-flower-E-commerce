@@ -1,10 +1,10 @@
 /* ============================================================
    js/auth-user.js — Akun pembeli (demo, localStorage)
-   Register / login / session. Dipakai halaman akun & checkout.
+   Daftar / masuk / sesi. Dipakai halaman akun & checkout.
    ============================================================ */
 
 const FawniaUserAuth = {
-  /* ---------- Users ---------- */
+  /* ---------- Data pengguna ---------- */
   users() {
     try {
       return JSON.parse(localStorage.getItem(FAWNIA_KEYS.users)) || [];
@@ -16,7 +16,7 @@ const FawniaUserAuth = {
     localStorage.setItem(FAWNIA_KEYS.users, JSON.stringify(users));
   },
 
-  /* ---------- Session ---------- */
+  /* ---------- Sesi (session) ---------- */
   current() {
     try {
       const email = JSON.parse(localStorage.getItem(FAWNIA_KEYS.session));
@@ -40,7 +40,7 @@ const FawniaUserAuth = {
       name,
       phone,
       email: email.toLowerCase(),
-      password /* demo lokal saja — production pakai hash di backend */,
+      password /* hanya untuk demo lokal — production wajib memakai hash di backend */,
       address: "",
       createdAt: new Date().toISOString(),
     };
@@ -74,7 +74,7 @@ const FawniaUserAuth = {
     return users[idx];
   },
 
-  /* ---------- Pesanan milik user login ---------- */
+  /* ---------- Pesanan milik pengguna yang sedang login ---------- */
   myOrders() {
     const user = this.current();
     if (!user) return [];

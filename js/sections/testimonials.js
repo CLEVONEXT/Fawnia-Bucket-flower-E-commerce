@@ -1,5 +1,5 @@
 /* ============================================================
-   js/sections/testimonials.js — Render testimoni pelanggan
+   js/sections/testimonials.js — Menampilkan testimoni pelanggan
    ============================================================ */
 
 const FawniaTestimonialsSection = {

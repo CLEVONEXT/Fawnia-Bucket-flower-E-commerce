@@ -1,5 +1,5 @@
 /* ============================================================
-   js/main.js — Bootstrap landing page (marketplace)
+   js/main.js — Inisialisasi landing page (gaya marketplace)
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* --- Logo: pakai assets/img/fawnia-logo.png, fallback huruf F --- */
+  /* --- Logo: memakai assets/img/fawnia-logo.png, cadangan huruf F --- */
   FawniaUI.mountLogos();
 
-  /* --- Kontak & link WA mengikuti pengaturan admin --- */
+  /* --- Kontak & link WA mengikuti pengaturan dari admin --- */
   const wa = FawniaUtils.waLink(
     settings.whatsapp,
     `Halo ${settings.businessName}, saya ingin bertanya tentang produk bucket & gift.`,
@@ -38,21 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     a.rel = "noopener";
   });
 
-  /* --- Section dinamis --- */
+  /* --- Bagian dinamis --- */
   FawniaProductsSection.init();
   FawniaGallerySection.render();
   FawniaTestimonialsSection.render();
   FawniaInfoSection.renderShipping();
   FawniaInfoSection.renderPayments();
 
-  /* --- Keranjang: badge + drawer (init sudah jalan dari js/cart.js) --- */
+  /* --- Keranjang: badge + drawer (init sudah dijalankan oleh js/cart.js) --- */
   FawniaCart.updateBadge();
   document.addEventListener("fawnia:cart-changed", () => {
     FawniaCart.updateBadge();
     if (FawniaCart.isOpen()) FawniaCart.renderItems();
   });
 
-  /* --- Tampilkan jumlah item di tombol checkout header --- */
+  /* --- Menampilkan jumlah item pada tombol checkout di header --- */
   const checkoutCta = document.querySelector("#header-checkout");
   if (checkoutCta) {
     const sync = () => {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* --- Lightbox --- */
   FawniaUI.initLightbox();
 
-  /* --- Navigasi aktif mengikuti section yang terlihat --- */
+  /* --- Navigasi aktif mengikuti bagian yang sedang terlihat --- */
   const links = [...document.querySelectorAll(".nav-link,.bottom-link")];
   const sections = [...document.querySelectorAll("main section[id]")];
   if ("IntersectionObserver" in window) {
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach((s) => observer.observe(s));
   }
 
-  /* --- Header mengecil saat scroll --- */
+  /* --- Header mengecil saat halaman digulir --- */
   const header = document.querySelector(".site-header");
   window.addEventListener(
     "scroll",

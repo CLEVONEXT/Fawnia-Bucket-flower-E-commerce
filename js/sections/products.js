@@ -1,17 +1,9 @@
 /* ============================================================
-   js/sections/products.js — Grid produk gaya marketplace
-   (Shopee/Lazada: kartu 2 baris, harga, terjual, tombol keranjang)
+   js/sections/products.js — Grid produk bergaya marketplace
+   (ala Shopee/Lazada: kartu dua baris, harga, terjual, tombol keranjang)
    ============================================================ */
 
 const FawniaProductsSection = {
-  /* Simulasi "Terjual" yang stabil dari id produk */
-  soldOf(p) {
-    const base = String(p.id)
-      .split("")
-      .reduce((n, c) => n + c.charCodeAt(0), 7);
-    return 12 + (base % 180);
-  },
-
   render(query = "") {
     const grid = document.querySelector("#product-grid");
     if (!grid) return;
@@ -49,12 +41,8 @@ const FawniaProductsSection = {
           <h3 class="product-name">${FawniaUtils.esc(p.name)}</h3>
           <div class="product-price-row">
             <span class="price">${FawniaUtils.rupiah(p.price)}</span>
-            ${p.price >= 100000 ? `<span class="badge-discount">Hemat</span>` : ""}
           </div>
           <div class="product-meta">
-            <span class="stars-mini">★ 5.0</span>
-            <span class="dot">·</span>
-            <span>${this.soldOf(p)} terjual</span>
             ${Number(p.stock) > 0 ? "" : `<span class="dot">·</span><span class="oos">Stok habis</span>`}
           </div>
           <div class="product-actions">

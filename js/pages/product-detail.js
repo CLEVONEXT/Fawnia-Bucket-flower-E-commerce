@@ -1,6 +1,7 @@
 /* ============================================================
    js/pages/product-detail.js — Halaman detail produk
-   Gaya marketplace: qty stepper, add to cart, beli langsung.
+   Bergaya marketplace: stepper jumlah, tambah ke keranjang,
+   dan beli langsung.
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  document.title = `${product.name} — Fawnia Shop`;
+  document.title = `${product.name} | Fawnia Shop`;
   const outOfStock = Number(product.stock) === 0;
   const related = products.filter((p) => String(p.id) !== String(product.id)).slice(0, 4);
 
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <ul class="detail-points">
           <li><i data-lucide="truck"></i> Pengiriman: ambil di toko, kurir lokal, instant, JNE, J&amp;T, SiCepat.</li>
           <li><i data-lucide="credit-card"></i> Pembayaran: transfer, QRIS, GoPay, ShopeePay, DANA, COD.</li>
-          <li><i data-lucide="package"></i> Packing aman — dus tebal + bubble wrap.</li>
+          <li><i data-lucide="package"></i> Packing aman: dus tebal + bubble wrap.</li>
           <li><i data-lucide="sparkles"></i> Bisa request warna, tema, dan kartu ucapan.</li>
         </ul>
         <a class="text-link" style="margin-top:20px" href="../index.html#products"><i data-lucide="arrow-left"></i> Kembali ke katalog</a>
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : ""
     }`;
 
-  /* Stepper jumlah */
+  /* Stepper jumlah (qty) */
   let qty = 1;
   const qtyValue = root.querySelector("#qty-value");
   root.querySelector("#qty-inc")?.addEventListener("click", () => {
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     qtyValue.textContent = qty;
   });
 
-  /* Masukkan keranjang memakai jumlah stepper */
+  /* Masukkan ke keranjang sesuai jumlah pada stepper */
   const addBtn = root.querySelector("#add-cart");
   if (addBtn) {
     addBtn.addEventListener("click", () => {
@@ -133,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Beli sekarang: masukkan keranjang lalu ke halaman checkout */
+  /* Beli sekarang: tambahkan ke keranjang lalu buka halaman checkout */
   root.querySelector("#buy-now")?.addEventListener("click", () => {
     FawniaCart.add(product.id, qty);
     FawniaCart.updateBadge();

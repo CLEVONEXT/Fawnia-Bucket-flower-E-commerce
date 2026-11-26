@@ -1,7 +1,7 @@
 /* ============================================================
    js/pages/account.js — Halaman "Akun Saya" ala marketplace
    Tab: Semua, Belum Bayar, Dikemas, Dikirim, Selesai
-   + Profil, Lacak Pengiriman, CS, Pusat Bantuan
+   + Profil, Lacak Pengiriman, Customer Service, Pusat Bantuan
    ============================================================ */
 
 const FawniaAccount = {
@@ -19,10 +19,10 @@ const FawniaAccount = {
     this.renderApp(root);
   },
 
-  /* ================= LOGIN / REGISTER ================= */
+  /* ================= MASUK / DAFTAR ================= */
   renderAuthForm(root) {
     const next = FawniaUtils.getParam("next") || "";
-    document.title = "Masuk / Daftar — Fawnia Shop";
+    document.title = "Masuk / Daftar | Fawnia Shop";
 
     root.innerHTML = `
       <div class="auth-wrap">
@@ -87,10 +87,10 @@ const FawniaAccount = {
     });
   },
 
-  /* ================= APP SETELAH LOGIN ================= */
+  /* ================= TAMPILAN SETELAH MASUK ================= */
   renderApp(root) {
     const user = FawniaUserAuth.current();
-    document.title = "Akun Saya — Fawnia Shop";
+    document.title = "Akun Saya | Fawnia Shop";
 
     const orders = FawniaUserAuth.myOrders();
     const count = (tabId) => {
@@ -138,7 +138,7 @@ const FawniaAccount = {
 
     this.renderOrders();
 
-    /* Tab */
+    /* Tab status pesanan */
     root.querySelectorAll(".order-tab").forEach((b) => {
       b.addEventListener("click", () => {
         this.tab = b.dataset.tab;
@@ -149,7 +149,7 @@ const FawniaAccount = {
       });
     });
 
-    /* Logout & edit profil */
+    /* Keluar & edit profil */
     root.querySelector("#logout-user").addEventListener("click", () => {
       FawniaUserAuth.logout();
       location.reload();
@@ -158,7 +158,7 @@ const FawniaAccount = {
       .querySelector("#edit-profile")
       .addEventListener("click", () => this.editProfile());
 
-    /* Panel: lacak / cs / help */
+    /* Panel: lacak pengiriman / customer service / bantuan */
     root.querySelectorAll("[data-panel]").forEach((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
@@ -331,7 +331,7 @@ const FawniaAccount = {
                 value: selected?.id,
                 options: orders.map((o) => ({
                   value: o.id,
-                  label: `${o.id} — ${o.productName}`,
+                  label: `${o.id}: ${o.productName}`,
                 })),
               })
             : `<p class="muted">Belum ada pesanan yang bisa dilacak.</p>`
@@ -345,8 +345,8 @@ const FawniaAccount = {
                  </div>
                  <ol class="tracking-steps">
                    <li class="${idx >= 0 ? "done" : ""}"><b>Dikemas</b><small>${idx >= 0 ? "Pesanan sedang dikemas penjual" : "Menunggu pembayaran"}</small></li>
-                   <li class="${idx >= 1 ? "done" : ""}"><b>Dikirim</b><small>${idx >= 1 ? "Paket diserahkan ke kurir" : "—"}</small></li>
-                   <li class="${idx >= 2 ? "done" : ""}"><b>Selesai</b><small>${idx >= 2 ? "Paket diterima" : "—"}</small></li>
+                   <li class="${idx >= 1 ? "done" : ""}"><b>Dikirim</b><small>${idx >= 1 ? "Paket diserahkan ke kurir" : "Menunggu"}</small></li>
+                   <li class="${idx >= 2 ? "done" : ""}"><b>Selesai</b><small>${idx >= 2 ? "Paket diterima" : "Menunggu"}</small></li>
                  </ol>
                  <p class="muted" style="font-size:12px">*Demo: status mengikuti data panel admin.</p>
                </div>`
@@ -370,10 +370,10 @@ const FawniaAccount = {
           name: "order",
           type: "select",
           options: [
-            { value: "", label: "— Umum —" },
+            { value: "", label: "Umum" },
             ...orders.map((order) => ({
               value: order.id,
-              label: `${order.id} — ${order.productName || "Pesanan"}`,
+              label: `${order.id}: ${order.productName || "Pesanan"}`,
             })),
           ],
         }) : ""}
@@ -440,7 +440,7 @@ function FawniaAdminBadge(text) {
   return `<span class="status status-${FawniaUtils.esc(key)}">${FawniaUtils.esc(text)}</span>`;
 }
 
-/* Field builder versi halaman publik (sama format dengan admin) */
+/* Pembuat field versi halaman publik (format sama dengan admin) */
 function FawniaUIField({ label, name, type = "text", value = "", required = false, options, rows = 3 }) {
   const v = FawniaUtils.esc(value);
   let control = "";

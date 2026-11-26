@@ -1,5 +1,5 @@
 /* ============================================================
-   js/admin/products.js — CRUD produk (tambah, edit, hapus)
+   js/admin/products.js — CRUD produk (tambah, ubah, hapus)
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : "",
       hint: "Contoh: assets/img/bucket-1.png",
     })}
-    <label class="field">Upload gambar (opsional, maks 2 MB)<input type="file" name="imageFile" accept="image/*"></label>
+    <label class="field">Unggah gambar (opsional, maks 2 MB)<input type="file" name="imageFile" accept="image/*"></label>
     <div class="preview-box">${p.image ? FawniaUI.img(p.image, p.name) : "<span>Belum ada gambar</span>"}</div>
     <p class="hint">Gambar akan disimpan sebagai data URL di localStorage.</p>`;
 

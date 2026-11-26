@@ -1,6 +1,6 @@
 /* ============================================================
    js/admin/auth.js — Login demo + proteksi halaman admin
-   GANTI dengan backend authentication untuk production.
+   GANTI dengan autentikasi backend untuk production.
    ============================================================ */
 
 const FAWNIA_ADMIN_DEMO = {

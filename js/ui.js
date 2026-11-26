@@ -3,11 +3,11 @@
    ============================================================ */
 
 const FawniaUI = {
-  /* Pasang logo ke semua elemen .brand-mark.
-     File: assets/img/fawnia-logo.png — jika belum ada, tampil huruf "F". */
+  /* Memasang logo ke semua elemen .brand-mark.
+     Berkas: assets/img/fawnia-logo.png — jika belum ada, tampil huruf "F". */
   mountLogos() {
     const name = FawniaStore.getSettings().businessName;
-    /* Halaman di subfolder (pages/admin) set data-base="../../" di <html> */
+    /* Halaman di subfolder (pages/admin) memakai data-base="../../" pada <html> */
     const base = this.base();
     document.querySelectorAll(".brand-mark").forEach((el) => {
       if (el.querySelector("img")) return;
@@ -23,12 +23,12 @@ const FawniaUI = {
     });
   },
 
-  /* Prefix path relatif untuk halaman di subfolder (data-base di <html>) */
+  /* Awalan path relatif untuk halaman di subfolder (data-base pada <html>) */
   base() {
     return document.documentElement.dataset.base || "";
   },
 
-  /* Gambar dengan fallback placeholder jika file PNG belum tersedia */
+  /* Gambar dengan cadangan placeholder bila berkas PNG belum tersedia */
   img(src, alt, className = "", style = "") {
     let path = src || "";
     if (path && !path.startsWith("data:") && !/^https?:/i.test(path) && !path.startsWith(this.base())) {
@@ -40,9 +40,20 @@ const FawniaUI = {
       onerror="this.onerror=null;this.src='${FawniaImages.placeholderSvg(safeAlt)}'">`;
   },
 
-  /* Inisialisasi icon lucide (jika library tersedia) */
+  /* Menyiapkan ikon lucide (jika library tersedia).
+     Lucide dimuat async di akhir halaman, jadi kegagalan CDN tidak
+     memblokir skrip aplikasi. */
   icons() {
     if (window.lucide) window.lucide.createIcons();
+  },
+
+  /* Gambar ulang ikon begitu lucide selesai dimuat (dipanggil sekali). */
+  watchIcons() {
+    if (this._iconWatch) return;
+    this._iconWatch = true;
+    const paint = () => this.icons();
+    document.addEventListener("lucide:ready", paint);
+    window.addEventListener("load", paint, { once: true });
   },
 
   /* ---------- Modal ringan untuk halaman publik ---------- */
@@ -147,7 +158,7 @@ const FawniaUI = {
   },
 };
 
-/* Placeholder SVG untuk gambar yang belum tersedia */
+/* SVG placeholder untuk gambar yang belum tersedia */
 const FawniaImages = {
   placeholderSvg(label = "") {
     const text = String(label)
@@ -165,3 +176,6 @@ const FawniaImages = {
 
 window.FawniaUI = FawniaUI;
 window.FawniaImages = FawniaImages;
+
+/* Gambar ulang ikon saat lucide akhirnya termuat. */
+FawniaUI.watchIcons();

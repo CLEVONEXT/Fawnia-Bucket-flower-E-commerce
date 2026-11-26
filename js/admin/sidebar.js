@@ -1,6 +1,6 @@
 /* ============================================================
-   js/admin/sidebar.js — Render header + sidebar panel admin
-   Menu aktif ditentukan dari nama file halaman.
+   js/admin/sidebar.js — Menampilkan header + sidebar panel admin
+   Menu aktif ditentukan dari nama berkas halaman.
    ============================================================ */
 
 const FAWNIA_ADMIN_MENU = [

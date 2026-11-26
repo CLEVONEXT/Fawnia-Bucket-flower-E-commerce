@@ -1,5 +1,5 @@
 /* ============================================================
-   js/sections/gallery.js — Render galeri + lightbox
+   js/sections/gallery.js — Menampilkan galeri + lightbox
    ============================================================ */
 
 const FawniaGallerySection = {

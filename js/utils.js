@@ -11,7 +11,7 @@ const FawniaUtils = {
     }).format(Number(n) || 0);
   },
 
-  /* Ganti karakter berbahaya agar aman ditaruh ke innerHTML / atribut */
+  /* Mengganti karakter berbahaya agar aman disisipkan ke innerHTML / atribut */
   esc(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -34,7 +34,7 @@ const FawniaUtils = {
     });
   },
 
-  /* Nomor WA: buang spasi, +, tanda hubung, awalan 0 -> 62 */
+  /* Nomor WA: hapus spasi, tanda +, tanda hubung, ubah awalan 0 menjadi 62 */
   waNumber(raw) {
     let n = String(raw || "").replace(/[^\d]/g, "");
     if (n.startsWith("0")) n = "62" + n.slice(1);
@@ -55,7 +55,7 @@ const FawniaUtils = {
     return "★".repeat(r) + "☆".repeat(5 - r);
   },
 
-  /* Baca file gambar sebagai data URL (untuk upload dari admin) */
+  /* Membaca file gambar menjadi data URL (untuk unggahan dari admin) */
   fileToDataURL(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -102,7 +102,7 @@ const FawniaUtils = {
           history.back();
         }
       } catch {
-        // Keep the Home link as a fallback for an invalid referrer.
+        // Biarkan tautan Home tetap dipakai sebagai cadangan bila referrer tidak valid.
       }
     });
     header.prepend(back);

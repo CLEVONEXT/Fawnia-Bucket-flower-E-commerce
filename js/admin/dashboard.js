@@ -1,5 +1,5 @@
 /* ============================================================
-   js/admin/dashboard.js — Ringkasan data admin
+   js/admin/dashboard.js — Ringkasan data untuk admin
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .map(
             (o) => `<div class="mini-row">
               <b>${FawniaUtils.esc(o.id)} · ${FawniaUtils.esc(o.name)}</b>
-              <span>${FawniaUtils.esc(o.productName)} — ${FawniaUtils.rupiah(FawniaStore.orderTotal(o))}</span>
+              <span>${FawniaUtils.esc(o.productName)}: ${FawniaUtils.rupiah(FawniaStore.orderTotal(o))}</span>
             </div>`,
           )
           .join("")

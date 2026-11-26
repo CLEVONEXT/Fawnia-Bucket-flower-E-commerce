@@ -1,7 +1,7 @@
 /* ============================================================
    js/config.js — Konfigurasi & konstanta global Fawnia
    Berisi: kunci localStorage, opsi pengiriman, opsi pembayaran,
-   status pesanan, nama file gambar, dan konten default.
+   status pesanan, nama berkas gambar, dan konten default.
    ============================================================ */
 
 const FAWNIA_KEYS = {
@@ -15,8 +15,8 @@ const FAWNIA_KEYS = {
   users: "fawnia_users",
 };
 
-/* ---------- Nama file gambar ----------
-   Ganti file PNG di folder assets/img/ dengan nama yang sama. */
+/* ---------- Nama berkas gambar ----------
+   Ganti berkas PNG di folder assets/img/ dengan nama yang sama. */
 const FAWNIA_IMAGES = {
   logo: "assets/img/fawnia-logo.png",
   hero: "assets/img/hero.png",
@@ -93,7 +93,7 @@ const FAWNIA_ORDER_STATUS = [
   "Baru",        // = Belum Bayar (menunggu pembayaran)
   "Diproses",    // = Dikemas (sudah dibayar)
   "Dikirim",     // = Dikirim (ada nomor resi)
-  "Selesai",     // = Selesai (diterima pembeli)
+  "Selesai",     // = Selesai (sudah diterima pembeli)
   "Dibatalkan",
 ];
 
@@ -223,27 +223,6 @@ const FAWNIA_DEFAULTS = {
     },
   ],
   testimonials: [
-    {
-      id: 1,
-      name: "Alya",
-      text: "Bucket-nya rapi dan cantik. Cocok banget buat hadiah!",
-      rating: 5,
-      visible: true,
-    },
-    {
-      id: 2,
-      name: "Nadia",
-      text: "Request custom saya sesuai dan prosesnya juga cepat.",
-      rating: 5,
-      visible: true,
-    },
-    {
-      id: 3,
-      name: "Raka",
-      text: "Packaging bagus, penerima hadiahnya suka banget.",
-      rating: 5,
-      visible: true,
-    },
   ],
 };
 

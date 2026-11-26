@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     FawniaUtils.toast("Pengaturan disimpan");
   });
 
-  /* Sinkronkan daftar pengiriman & pembayaran (read-only info) */
+  /* Menyinambungkan daftar pengiriman & pembayaran (info hanya-baca) */
   const shippingBox = document.querySelector("#settings-shipping");
   if (shippingBox) {
     shippingBox.innerHTML = FAWNIA_SHIPPING.map(
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ).join("");
   }
 
-  /* Reset data demo */
+  /* Mengembalikan data demo ke default */
   document.querySelector("#reset-data")?.addEventListener("click", () => {
     if (
       !FawniaAdmin.confirm(

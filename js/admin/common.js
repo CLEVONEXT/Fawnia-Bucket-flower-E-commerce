@@ -1,6 +1,6 @@
 /* ============================================================
    js/admin/common.js — Helper khusus panel admin
-   (modal, konfirmasi, upload gambar, field builder)
+   (modal, konfirmasi, unggah gambar, pembuat field)
    ============================================================ */
 
 const FawniaAdmin = {
@@ -60,7 +60,7 @@ const FawniaAdmin = {
     return window.confirm(message);
   },
 
-  /* ---------- Field builder ---------- */
+  /* ---------- Pembuat field (field builder) ---------- */
   field({
     label,
     name,
@@ -97,7 +97,7 @@ const FawniaAdmin = {
     }</label>`;
   },
 
-  /* Upload gambar -> kembalikan data URL, atau pertahankan path lama */
+  /* Unggah gambar -> kembalikan data URL, atau pertahankan path lama */
   async readImage(fileInput, fallback = "") {
     const file = fileInput?.files?.[0];
     if (!file) return fallback;

@@ -1,5 +1,5 @@
 /* ============================================================
-   js/store.js — Data layer (localStorage) untuk semua entitas
+   js/store.js — Lapisan data (localStorage) untuk semua entitas
    ============================================================ */
 
 const FawniaStore = {

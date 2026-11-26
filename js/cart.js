@@ -1,6 +1,7 @@
 /* ============================================================
-   js/cart.js — Keranjang belanja (localStorage) + drawer UI
-   Dimuat di semua halaman publik. Robust terhadap urutan skrip.
+   js/cart.js — Keranjang belanja (localStorage) + tampilan drawer
+   Dimuat di semua halaman publik. Tetap berjalan aman
+   walaupun urutan pemuatan skrip berbeda.
    ============================================================ */
 
 const FawniaCart = {
@@ -83,9 +84,16 @@ const FawniaCart = {
 
   /* ---------- Drawer keranjang ---------- */
   ensureDrawer() {
-    if (document.querySelector("#fawnia-cart-drawer")) return;
-    const root = document.createElement("div");
-    root.id = "fawnia-cart-drawer";
+    let root =
+      document.querySelector("#cart-drawer") ||
+      document.querySelector("#fawnia-cart-drawer");
+    if (root?.querySelector(".drawer")) return;
+
+    if (!root) {
+      root = document.createElement("div");
+      document.body.appendChild(root);
+    }
+    root.id = "cart-drawer";
     root.className = "cart-drawer-root";
     root.setAttribute("aria-hidden", "true");
     root.innerHTML = `
@@ -105,8 +113,6 @@ const FawniaCart = {
           <button type="button" class="drawer-clear" data-cart-clear>Kosongkan keranjang</button>
         </footer>
       </aside>`;
-    document.body.appendChild(root);
-
     root.addEventListener("click", (e) => {
       if (e.target.closest("[data-cart-close]")) this.close();
       if (e.target.closest("[data-cart-go-checkout]")) this.close();
@@ -134,7 +140,7 @@ const FawniaCart = {
     });
   },
 
-  /* prefix path untuk halaman di subfolder (data-base di <html>) */
+  /* Awalan path untuk halaman di subfolder (data-base pada <html>) */
   pageBase() {
     return document.documentElement.dataset.base || "";
   },
@@ -142,22 +148,39 @@ const FawniaCart = {
   open() {
     this.ensureDrawer();
     this.renderItems();
-    const root = document.querySelector("#fawnia-cart-drawer");
+    const root = document.querySelector("#cart-drawer");
     root.classList.add("show");
     root.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    /* Beri tahu Lenis untuk berhenti menggulir selama drawer terbuka. */
+    document.dispatchEvent(new CustomEvent("fawnia:scroll-lock", { detail: { locked: true } }));
   },
 
   close() {
-    const root = document.querySelector("#fawnia-cart-drawer");
+    const root = document.querySelector("#cart-drawer");
     if (!root) return;
     root.classList.remove("show");
     root.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    document.dispatchEvent(new CustomEvent("fawnia:scroll-lock", { detail: { locked: false } }));
+  },
+
+  /* Ubah tombol "+ Keranjang" menjadi "Lihat Keranjang" sesaat,
+     pengganti membuka drawer otomatis. */
+  markButton(btn) {
+    btn.classList.add("added");
+    const original = btn.dataset.label || btn.textContent.trim();
+    btn.dataset.label = original;
+    btn.textContent = "Lihat Keranjang";
+    clearTimeout(btn._resetTimer);
+    btn._resetTimer = setTimeout(() => {
+      btn.textContent = btn.dataset.label || "+ Keranjang";
+      btn.classList.remove("added");
+    }, 1400);
   },
 
   isOpen() {
-    return document.querySelector("#fawnia-cart-drawer")?.classList.contains("show");
+    return document.querySelector("#cart-drawer")?.classList.contains("show");
   },
 
   renderItems() {
@@ -202,7 +225,7 @@ const FawniaCart = {
       this.updateBadge();
       this.renderItems();
 
-      /* Delegasi klik global — bekerja untuk semua halaman */
+      /* Delegasi klik global — berlaku untuk semua halaman */
       document.addEventListener("click", (e) => {
         const opener = e.target.closest("[data-cart-open]");
         if (opener) {
@@ -220,6 +243,9 @@ const FawniaCart = {
             setTimeout(() => btn.classList.remove("added"), 900);
             this.renderItems();
             this.updateBadge();
+            /* Tidak membuka drawer otomatis: cukup ubah tombol menjadi
+               "Lihat Keranjang" agar belanja tidak terhenti. */
+            this.markButton(btn);
           }
         }
       });

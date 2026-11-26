@@ -1,11 +1,11 @@
 /* ============================================================
-   js/qr.js — Pembuat QR code (tanpa library eksternal)
-   Implementasi QR Model 2, level M, versi otomatis 1-10.
+   js/qr.js — Pembuat kode QR (tanpa library eksternal)
+   Implementasi QR Model 2, level koreksi M, versi otomatis 1-10.
    Dipakai untuk QR pembayaran di halaman struk.
    ============================================================ */
 
 const FawniaQr = {
-  /* Galois field GF(256) */
+  /* Medan Galois GF(256) */
   _EXP: (() => {
     const exp = new Array(256);
     let x = 1;
@@ -35,7 +35,7 @@ const FawniaQr = {
     return this._EXP[(this._LOG[a] + this._LOG[b]) % 255];
   },
 
-  /* Reed-Solomon generator polinomial */
+  /* Polinomial generator Reed-Solomon */
   _rsGen(degree) {
     let poly = [1];
     for (let i = 0; i < degree; i++) {
@@ -67,7 +67,7 @@ const FawniaQr = {
     return [14, 26, 42, 62, 84, 106, 122, 152, 180, 213][ver - 1];
   },
   _ecCount(ver) {
-    /* blok & EC per blok level M */
+    /* jumlah blok & kode EC per blok pada level M */
     const info = {
       1: [1, 16],
       2: [1, 28],
@@ -85,7 +85,7 @@ const FawniaQr = {
   },
 
   generate(text) {
-    /* pilih versi terkecil yang muat */
+    /* pilih versi terkecil yang masih memuat data */
     const bytes = new TextEncoder().encode(text);
     let ver = 1;
     while (
@@ -100,7 +100,7 @@ const FawniaQr = {
       new Array(size).fill(null),
     );
 
-    /* --- Function patterns --- */
+    /* --- Pola fungsi (function patterns) --- */
     const setFinder = (r, c) => {
       for (let dr = -1; dr <= 7; dr++) {
         for (let dc = -1; dc <= 7; dc++) {
@@ -119,7 +119,7 @@ const FawniaQr = {
     setFinder(0, size - 7);
     setFinder(size - 7, 0);
 
-    /* alignment patterns */
+    /* pola alignment (penyejajar) */
     const alignPos = {
       1: [],
       2: [6, 18],
@@ -154,15 +154,15 @@ const FawniaQr = {
       }
     }
 
-    /* timing patterns */
+    /* pola timing (pewaktu) */
     for (let i = 8; i < size - 8; i++) {
       if (modules[6][i] === null) modules[6][i] = i % 2 === 0 ? 1 : 0;
       if (modules[i][6] === null) modules[i][6] = i % 2 === 0 ? 1 : 0;
     }
-    /* dark module */
+    /* modul gelap (dark module) */
     modules[size - 8][8] = 1;
 
-    /* --- Data encoding (mode byte) --- */
+    /* --- Pengodean data (mode byte) --- */
     const dataBits = [];
     const push = (val, len) => {
       for (let i = len - 1; i >= 0; i--) dataBits.push((val >> i) & 1);
@@ -187,7 +187,7 @@ const FawniaQr = {
       dataCodewords.push(b);
     }
 
-    /* --- Error correction --- */
+    /* --- Koreksi galat (error correction) --- */
     const [blocks, per] = {
       1: [1, 16],
       2: [1, 28],
@@ -207,7 +207,7 @@ const FawniaQr = {
       ecCodewords.push(...this._rsEncode(chunk, per));
     }
 
-    /* interleave */
+    /* interleave (penyisipan ulang blok) */
     const final = [];
     const maxData = Math.max(
       ...Array.from({ length: blocks }, (_, b) => blockLen),
@@ -238,10 +238,10 @@ const FawniaQr = {
       }
     }
 
-    /* --- Mask 0 + format info --- */
+    /* --- Mask 0 + info format --- */
     const mask = (r, c) =>
       (r + c) % 2 === 0 ? modules[r][c] ^ 1 : modules[r][c];
-    /* level M (00) + mask 0 (000) -> format bits */
+    /* level M (00) + mask 0 (000) -> bit format */
     const fmtBitsRaw = 0b00000; // (level M = 00, mask 0)
     const fmtG = 0b10100111111;
     let fmt = fmtBitsRaw << 10;
@@ -255,15 +255,15 @@ const FawniaQr = {
     const place = (r, c, v) => {
       if (modules[r]?.[c] !== undefined) modules[r][c] = v;
     };
-    /* sekitar finder kiri-atas */
+    /* di sekitar finder kiri-atas */
     for (let i = 0; i <= 5; i++) place(8, i, bits[i]);
     place(8, 7, bits[6]);
     place(8, 8, bits[7]);
     place(7, 8, bits[8]);
     for (let i = 9; i < 15; i++) place(14 - i, 8, bits[i]);
-    /* kanan-atas */
+    /* finder kanan-atas */
     for (let i = 0; i < 8; i++) place(8, size - 1 - i, bits[i]);
-    /* kiri-bawah */
+    /* finder kiri-bawah */
     for (let i = 0; i < 7; i++) place(size - 15 + i, 8, bits[i]);
 
     /* --- Render SVG --- */
@@ -283,7 +283,7 @@ const FawniaQr = {
     try {
       return this.generate(text);
     } catch (e) {
-      /* fallback: placeholder */
+      /* cadangan: tampilkan placeholder */
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#fff"/><text x="100" y="100" text-anchor="middle" font-size="12" fill="#a94b42">QR error</text></svg>`;
       return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
     }

@@ -39,6 +39,7 @@ textarea {
   flex: none;
   overflow: hidden;
   border-radius: 50%;
+  border-radius: 50%;
   background: var(--ink);
   color: #fff;
 }
@@ -106,6 +107,7 @@ textarea {
   width: 44px;
   height: 44px;
   background: #fff;
+  border-radius: 50%;
 }
 .login-showcase .admin-brand .brand-mark img {
   display: block;
@@ -262,7 +264,7 @@ textarea {
   color: var(--accent-dark);
 }
 
-/* ---------- Layout ---------- */
+/* ---------- Tata letak ---------- */
 .admin-top {
   height: 70px;
   padding: 0 30px;
@@ -359,7 +361,7 @@ textarea {
   margin-bottom: 0;
 }
 
-/* ---------- Stats ---------- */
+/* ---------- Statistik ---------- */
 .admin-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -539,7 +541,7 @@ textarea {
   font-size: 13px;
 }
 
-/* ---------- Toolbar & form ---------- */
+/* ---------- Bilah alat & form ---------- */
 .admin-toolbar {
   display: flex;
   gap: 10px;
@@ -845,7 +847,7 @@ textarea {
   transform: translate(-50%, 0);
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Tampilan responsif ---------- */
 @media (max-width: 1000px) {
   .admin-sidebar {
     width: 190px;

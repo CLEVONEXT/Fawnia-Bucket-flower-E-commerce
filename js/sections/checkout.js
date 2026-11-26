@@ -1,11 +1,11 @@
 /* ============================================================
    js/sections/checkout.js — Halaman checkout (pages/checkout.html)
-   Ringkasan item keranjang + pengiriman + pembayaran.
+   Ringkasan item keranjang + data pengiriman + metode pembayaran.
    Setelah kirim: simpan pesanan, buat QR pembayaran, buka struk.
    ============================================================ */
 
 const FawniaCheckout = {
-  /* ---------- Render halaman checkout ---------- */
+  /* ---------- Menampilkan halaman checkout ---------- */
   init(rootSelector = "#checkout-page") {
     const root = document.querySelector(rootSelector);
     if (!root) return;
@@ -16,7 +16,7 @@ const FawniaCheckout = {
       a.href = FawniaUtils.waLink(settings.whatsapp, `Halo ${settings.businessName}, saya ingin bertanya.`);
     });
 
-    /* State awal dari query ?id=xxx (setelah membuat pesanan) */
+    /* State awal dari query ?id=xxx (setelah pesanan dibuat) */
     const orderId = FawniaUtils.getParam("id");
     const done = FawniaUtils.getParam("done") === "1";
     if (done && orderId) {
@@ -84,7 +84,7 @@ const FawniaCheckout = {
     const summary = form.querySelector("#checkout-summary");
 
     shippingSelect.innerHTML = FAWNIA_SHIPPING.map(
-      (s) => `<option value="${s.id}">${FawniaUtils.esc(s.label)} — ${s.cost === 0 ? "Gratis" : FawniaUtils.rupiah(s.cost)}</option>`,
+      (s) => `<option value="${s.id}">${FawniaUtils.esc(s.label)}: ${s.cost === 0 ? "Gratis" : FawniaUtils.rupiah(s.cost)}</option>`,
     ).join("");
     paymentSelect.innerHTML = FAWNIA_PAYMENTS.map(
       (p) => `<option value="${p.id}">${FawniaUtils.esc(p.label)}</option>`,
@@ -103,7 +103,7 @@ const FawniaCheckout = {
     form.addEventListener("change", calc);
     calc();
 
-    /* Hapus item dari halaman checkout */
+    /* Menghapus item dari halaman checkout */
     root.addEventListener("click", (e) => {
       const del = e.target.closest("[data-remove]");
       if (!del) return;
@@ -167,7 +167,7 @@ const FawniaCheckout = {
       if (!validate(data)) return;
       const lines = [
         `Halo ${settings.businessName}, saya ingin memesan:`,
-        ...data.items.map((i) => `• ${i.name} x${i.qty} — ${FawniaUtils.rupiah(i.price * i.qty)}`),
+        ...data.items.map((i) => `• ${i.name} x${i.qty}: ${FawniaUtils.rupiah(i.price * i.qty)}`),
         `• Pengiriman: ${FawniaStore.shippingLabel(data.shipping)}`,
         `• Pembayaran: ${FawniaStore.paymentLabel(data.payment)}`,
         `• Total: ${FawniaUtils.rupiah(data.total)}`,
@@ -198,7 +198,7 @@ const FawniaCheckout = {
           <i data-lucide="check-circle-2"></i>
           <div>
             <h1>Pesanan berhasil dibuat!</h1>
-            <p>Nomor pesanan <b>${FawniaUtils.esc(order.id)}</b> — admin akan konfirmasi via WhatsApp.</p>
+            <p>Nomor pesanan <b>${FawniaUtils.esc(order.id)}</b>. Admin akan konfirmasi via WhatsApp.</p>
           </div>
         </div>
 
@@ -232,7 +232,7 @@ const FawniaCheckout = {
               </table>
               <div class="receipt-totals">
                 <div><span>Subtotal</span><span>${FawniaUtils.rupiah(order.subtotal)}</span></div>
-                <div><span>Pengiriman — ${FawniaUtils.esc(FawniaStore.shippingLabel(order.shipping))}</span><span>${Number(order.shippingCost) === 0 ? "Gratis" : FawniaUtils.rupiah(order.shippingCost)}</span></div>
+                <div><span>Pengiriman: ${FawniaUtils.esc(FawniaStore.shippingLabel(order.shipping))}</span><span>${Number(order.shippingCost) === 0 ? "Gratis" : FawniaUtils.rupiah(order.shippingCost)}</span></div>
                 <div class="grand"><span>Total</span><span>${FawniaUtils.rupiah(total)}</span></div>
               </div>
               <div class="receipt-info">
@@ -255,14 +255,14 @@ const FawniaCheckout = {
 
     FawniaUI.mountLogos();
 
-    /* QR DUMMY untuk demo — pola unik per pesanan.
-       Untuk production, ganti dengan QRIS asli toko. */
+    /* QR DUMMY untuk demo — polanya unik per pesanan.
+       Untuk production, ganti dengan QRIS asli milik toko. */
     const qrImg = root.querySelector("#payment-qr");
     const note = root.querySelector("#payment-note");
     qrImg.src = FawniaQr.dataUrl(
       `${order.id}|${payment}|${total}`,
     );
-    note.textContent = `QR demo — bukan QRIS asli. Bayar sesuai metode ${payment}, lalu kirim bukti + nomor pesanan ${order.id} ke WhatsApp admin.`;
+    note.textContent = `QR demo, bukan QRIS asli. Bayar sesuai metode ${payment}, lalu kirim bukti + nomor pesanan ${order.id} ke WhatsApp admin.`;
 
     root.querySelector("#confirm-wa").href = FawniaUtils.waLink(
       settings.whatsapp,
